@@ -1,10 +1,14 @@
+# embed google test
+option(INSTALL_GTEST "Enable installation of googletest. (Projects embedding googletest may want to turn this OFF.)" OFF)
+add_subdirectory("thirdparty/googletest-release-1.10.0")
+
 set(TEST_DEMO_SRCS
         stdafx.h
         ../src/MagicNumber.cpp
         ../src/MagicNumber.h
         ../src/UtilMath.cpp
         ../src/UtilMath.h
-         "MagicNumberTests.cpp")
+         MagicNumberTests.cpp)
 
 add_executable(test_demo ${TEST_DEMO_SRCS})
 
@@ -16,5 +20,5 @@ endif()
 # should help improve compile time for test project
 target_precompile_headers(test_demo PRIVATE stdafx.h)
 
-# link with google test (including google mock)
+# compile and link with google test (including google mock)
 target_link_libraries(test_demo PUBLIC gmock gtest_main)
