@@ -7,7 +7,7 @@ set(DEMO_SRC
         MagicNumber.h
         UtilMath.cpp
         UtilMath.h
-        )
+        IUtilMathPassThrough.h UtilMathPassThrough.cpp UtilMathPassThrough.h MagicNumberDependencies.cpp MagicNumberDependencies.h IMagicNumberDependencies.h)
 
 add_executable(demo ${DEMO_SRC})
 

@@ -1,56 +1,33 @@
 #include "stdafx.h"
 #include "../src/MagicNumber.h"
+#include "../src/UtilMath.h"
+#include "MockUtilMathPassThrough.h"
+#include "MockMagicNumberDependencies.h"
 
-TEST(MagicNumberTests, GetMagicNumberTest1)
+using ::testing::Return;
+using ::testing::_;
+
+TEST(MagicNumberTests, GetMagicNumberTest)
 {
 	// ARRANGE
 
 	int a = 1234;
-	int b = 2468;
+	int b = 1;	// needed to avoid wildcard usage
+	int a_times_b = 3579;
+	int expected = 4680;
+
+	MockUtilMathPassThrough mockUtilMathPassThrough;
+	MockMagicNumberDependencies mockMagicNumberDependencies;
 
 	// ACT
 
-	MagicNumber mn;
+	EXPECT_CALL(mockUtilMathPassThrough, Multiply(a, b)).WillRepeatedly(Return(a_times_b));
+	EXPECT_CALL(mockMagicNumberDependencies, MagicNumberHelper(3579, -3579)).WillOnce(Return(expected));
+
+	MagicNumber mn(&mockUtilMathPassThrough, &mockMagicNumberDependencies);
 	int actual = mn.GetMagicNumber(a, b);
 
 	// ASSERT
-	int expected = -1223274496;
-
-	ASSERT_EQ(expected, actual);
-}
-
-TEST(MagicNumberTests, GetMagicNumberTest2)
-{
-	// ARRANGE
-
-	int a = 1;
-	int b = 0;
-
-	// ACT
-
-	MagicNumber mn;
-	int actual = mn.GetMagicNumber(a, b);
-
-	// ASSERT
-	int expected = -1;
-
-	ASSERT_EQ(expected, actual);
-}
-
-TEST(MagicNumberTests, GetMagicNumberTest3)
-{
-	// ARRANGE
-
-	int a = 2;
-	int b = 0;
-
-	// ACT
-
-	MagicNumber mn;
-	int actual = mn.GetMagicNumber(a, b);
-
-	// ASSERT
-	int expected = -1;
 
 	ASSERT_EQ(expected, actual);
 }

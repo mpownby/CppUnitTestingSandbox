@@ -8,7 +8,7 @@ set(TEST_DEMO_SRCS
         ../src/MagicNumber.h
         ../src/UtilMath.cpp
         ../src/UtilMath.h
-         MagicNumberTests.cpp)
+         MagicNumberTests.cpp ../src/IUtilMathPassThrough.h ../src/UtilMathPassThrough.cpp ../src/UtilMathPassThrough.h MockUtilMathPassThrough.h ../src/MagicNumberDependencies.cpp ../src/MagicNumberDependencies.h ../src/IMagicNumberDependencies.h MockMagicNumberDependencies.h MagicNumberDependenciesTest.cpp MagicNumberIT.cpp)
 
 add_executable(test_demo ${TEST_DEMO_SRCS})
 

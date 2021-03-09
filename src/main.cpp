@@ -1,5 +1,8 @@
 #include <iostream>
 #include "MagicNumber.h"
+#include "UtilMathPassThrough.h"
+#include "UtilMath.h"
+#include "MagicNumberDependencies.h"
 
 using std::cout;
 using std::cin;
@@ -9,7 +12,11 @@ int main()
 {
 	int a = 0;
 	int b = 0;
-	MagicNumber mn;
+
+	UtilMathPassThrough ump;
+	MagicNumberDependencies deps(&ump);
+	MagicNumber mn(&ump, &deps);
+	UtilMath::Initialize();
 
 	cout << "Enter value for A: ";
 	cin >> a;
