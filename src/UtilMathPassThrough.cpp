@@ -1,6 +1,11 @@
 #include "UtilMathPassThrough.h"
 #include "UtilMath.h"
 
+IUtilMathPassThroughSPtr UtilMathPassThrough::CreateInstance()
+{
+	return IUtilMathPassThroughSPtr(new UtilMathPassThrough(), UtilMathPassThrough::deleter());
+}
+
 int UtilMathPassThrough::Multiply(int a, int b)
 {
 	return UtilMath::Multiply(a, b);

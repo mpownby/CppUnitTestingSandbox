@@ -18,7 +18,7 @@ public:
 
 	static IMagicNumberSPtr CreateInstance(IUtilMathPassThrough *pUtilMath, IMagicNumberDependencies *pDeps);
 
-	int GetMagicNumber(int a, int b);
+	int GetMagicNumber(int a, int b) override;
 
 private:
 	MagicNumber(IUtilMathPassThrough *pUtilMath, IMagicNumberDependencies *pDeps) :
@@ -26,7 +26,7 @@ private:
 			m_pDeps(pDeps)
 	{}
 
-	virtual ~MagicNumber() {}
+	virtual ~MagicNumber() = default;
 
 	void DeleteInstance() override { delete this; }
 

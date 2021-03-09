@@ -13,7 +13,6 @@ TEST(MagicNumberDependenciesTests, MagicNumberHelperTest)
 {
 	// ARRANGE
 
-	int a = 0;
 	int b = 2468;
 
 	MockUtilMathPassThrough mockUtilMathPassThrough;
@@ -39,9 +38,12 @@ TEST(MagicNumberDependenciesTests, MagicNumberHelperTest)
 			throw runtime_error("Not supported!");
 		};
 
-		MagicNumberDependencies mnd(&mockUtilMathPassThrough);
+		IMagicNumberDependenciesSPtr magicNumberDependencies = MagicNumberDependencies::Builder()
+				.SetUtilMath(&mockUtilMathPassThrough)
+				.Build();
+		IMagicNumberDependencies *pMagicNumberDependencies = magicNumberDependencies.get();
 
-		int actual = mnd.MagicNumberHelper(a, b);
+		int actual = pMagicNumberDependencies->MagicNumberHelper(a, b);
 
 		// ASSERT
 

@@ -13,9 +13,11 @@ int main()
 	int a = 0;
 	int b = 0;
 
-	UtilMathPassThrough ump;
-	MagicNumberDependencies deps(&ump);
-	IMagicNumberSPtr magicNumber = MagicNumber::CreateInstance(&ump, &deps);
+	IUtilMathPassThroughSPtr ump = UtilMathPassThrough::CreateInstance();
+	IUtilMathPassThrough *pUMP = ump.get();
+	IMagicNumberDependenciesSPtr magicNumberDeps = MagicNumberDependencies::CreateInstance(pUMP);
+	IMagicNumberDependencies *pMagicNumberDeps = magicNumberDeps.get();
+	IMagicNumberSPtr magicNumber = MagicNumber::CreateInstance(pUMP, pMagicNumberDeps);
 	IMagicNumber *pMagicNumber = magicNumber.get();
 	UtilMath::Initialize();
 

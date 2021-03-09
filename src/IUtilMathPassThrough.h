@@ -1,6 +1,9 @@
 #ifndef CPPUNITTESTING_IUTILMATHPASSTHROUGH_H
 #define CPPUNITTESTING_IUTILMATHPASSTHROUGH_H
 
+#include <memory>
+using std::shared_ptr;
+
 class IUtilMathPassThrough
 {
 public:
@@ -10,5 +13,7 @@ public:
 
 	virtual int Divide(int a, int b) = 0;
 };
+
+typedef shared_ptr<IUtilMathPassThrough> IUtilMathPassThroughSPtr;
 
 #endif //CPPUNITTESTING_IUTILMATHPASSTHROUGH_H

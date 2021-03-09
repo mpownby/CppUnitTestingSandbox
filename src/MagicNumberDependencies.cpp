@@ -3,6 +3,11 @@
 
 using std::runtime_error;
 
+IMagicNumberDependenciesSPtr MagicNumberDependencies::CreateInstance(IUtilMathPassThrough* pPassThrough)
+{
+	return IMagicNumberDependenciesSPtr(new MagicNumberDependencies(pPassThrough), MagicNumberDependencies::deleter());
+}
+
 int MagicNumberDependencies::MagicNumberHelper(int a, int b)
 {
 	int result = 0;
