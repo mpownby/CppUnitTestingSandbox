@@ -24,8 +24,13 @@ TEST(MagicNumberTests, GetMagicNumberTest)
 	EXPECT_CALL(mockUtilMathPassThrough, Multiply(a, b)).WillRepeatedly(Return(a_times_b));
 	EXPECT_CALL(mockMagicNumberDependencies, MagicNumberHelper(3579, -3579)).WillOnce(Return(expected));
 
-	MagicNumber mn(&mockUtilMathPassThrough, &mockMagicNumberDependencies);
-	int actual = mn.GetMagicNumber(a, b);
+	IMagicNumberSPtr magicNumber = MagicNumber::Builder()
+			.SetUtilMath(&mockUtilMathPassThrough)
+			.SetDeps(&mockMagicNumberDependencies)
+			.Build();
+
+	IMagicNumber *pMagicNumber = magicNumber.get();
+	int actual = pMagicNumber->GetMagicNumber(a, b);
 
 	// ASSERT
 

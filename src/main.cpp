@@ -15,7 +15,8 @@ int main()
 
 	UtilMathPassThrough ump;
 	MagicNumberDependencies deps(&ump);
-	MagicNumber mn(&ump, &deps);
+	IMagicNumberSPtr magicNumber = MagicNumber::CreateInstance(&ump, &deps);
+	IMagicNumber *pMagicNumber = magicNumber.get();
 	UtilMath::Initialize();
 
 	cout << "Enter value for A: ";
@@ -24,7 +25,7 @@ int main()
 	cout << "Enter value for B: ";
 	cin >> b;
 
-	cout << "The magic number is: " << mn.GetMagicNumber(a, b) << endl;
+	cout << "The magic number is: " << pMagicNumber->GetMagicNumber(a, b) << endl;
 
 	return 0;
 }

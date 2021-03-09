@@ -19,10 +19,11 @@ TEST(MagicNumberIntegrationTests, Test1)
 
 	UtilMathPassThrough ump;
 	MagicNumberDependencies deps(&ump);
-	MagicNumber mn(&ump, &deps);
+	IMagicNumberSPtr magicNumber = MagicNumber::CreateInstance(&ump, &deps);
+	IMagicNumber *pMagicNumber = magicNumber.get();
 	UtilMath::Initialize();
 
-	int actual = mn.GetMagicNumber(a, b);
+	int actual = pMagicNumber->GetMagicNumber(a, b);
 
 	// ASSERT
 

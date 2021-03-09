@@ -8,6 +8,11 @@
 
 using std::runtime_error;
 
+IMagicNumberSPtr MagicNumber::CreateInstance(IUtilMathPassThrough* pUtilMath, IMagicNumberDependencies* pDeps)
+{
+	return IMagicNumberSPtr(new MagicNumber(pUtilMath, pDeps), MagicNumber::deleter());
+}
+
 int MagicNumber::GetMagicNumber(int a, int b)
 {
 	while (b > 0)
